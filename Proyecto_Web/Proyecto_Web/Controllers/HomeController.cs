@@ -8,23 +8,45 @@ namespace Proyecto_Web.Controllers
 {
     public class HomeController : Controller
     {
+
+        /*Abre la pantalla de inicio de sesion*/
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        /*Abre la pantalla de Registro*/
+        [HttpGet]
+        public ActionResult Registro()
         {
-            ViewBag.Message = "Your application description page.";
+            return View();
+        }
+
+        /*Abre la pantalla Principal del sistema*/
+        [HttpGet]
+        public ActionResult Principal()
+        {
 
             return View();
         }
 
-        public ActionResult Contact()
+        /*Se redirige a la pantalla principall *Debe llevar programacion para autenticar valores* */
+        [HttpPost]
+        public ActionResult IniciarSesion()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            /*Programacion*/
+            return RedirectToAction("Principal", "Home");
         }
+
+        /*Se redirige a la pantalla principall *Debe llevar programacion para autenticar valores* */
+        [HttpPost]
+        public ActionResult Registrarse()
+        {
+            /*Programacion*/
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
 }
