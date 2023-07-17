@@ -9,7 +9,7 @@ namespace Proyecto_Web.Controllers
     public class HomeController : Controller
     {
 
-        /*Abre la pantalla de inicio de sesion*/
+        
         [HttpGet]
         public ActionResult Index()
         {
