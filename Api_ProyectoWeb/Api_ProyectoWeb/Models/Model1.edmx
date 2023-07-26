@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GimnasioDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actividad">
+          <Key>
+            <PropertyRef Name="actividad_id" />
+          </Key>
+          <Property Name="actividad_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="horario" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Clase">
+          <Key>
+            <PropertyRef Name="clase_id" />
+          </Key>
+          <Property Name="clase_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="horario" Type="varchar" MaxLength="100" />
+          <Property Name="capacidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="equipo_id" />
+          </Key>
+          <Property Name="equipo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="capacidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Inscripcion">
+          <Key>
+            <PropertyRef Name="inscripcion_id" />
+          </Key>
+          <Property Name="inscripcion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="miembro_id" Type="int" />
+          <Property Name="clase_id" Type="int" />
+          <Property Name="actividad_id" Type="int" />
+          <Property Name="fecha_inscripcion" Type="datetime" />
+          <Property Name="estado_inscripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="detalles" Type="text" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="instructor_id" />
+          </Key>
+          <Property Name="instructor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="especialidad" Type="varchar" MaxLength="50" />
+          <Property Name="horarios_disponibles" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Miembro">
+          <Key>
+            <PropertyRef Name="miembro_id" />
+          </Key>
+          <Property Name="miembro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="correo_electronico" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fecha_inicio_membresia" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="pago_id" />
+          </Key>
+          <Property Name="pago_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="miembro_id" Type="int" />
+          <Property Name="fecha_pago" Type="datetime" />
+          <Property Name="monto" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="metodo_pago" Type="varchar" MaxLength="50" />
+          <Property Name="estado_pago" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RegistroAcceso">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="miembro_id" Type="int" />
+          <Property Name="fecha_ingreso" Type="datetime" />
+          <Property Name="fecha_salida" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Rutina">
+          <Key>
+            <PropertyRef Name="rutina_id" />
+          </Key>
+          <Property Name="rutina_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="duracion" Type="int" />
+        </EntityType>
+        <Association Name="FK__Inscripci__activ__59063A47">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="actividad_id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="actividad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inscripci__clase__5812160E">
+          <End Role="Clase" Type="Self.Clase" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clase">
+              <PropertyRef Name="clase_id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="clase_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inscripci__miemb__571DF1D5">
+          <End Role="Miembro" Type="Self.Miembro" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miembro">
+              <PropertyRef Name="miembro_id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="miembro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pago__miembro_id__5DCAEF64">
+          <End Role="Miembro" Type="Self.Miembro" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miembro">
+              <PropertyRef Name="miembro_id" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="miembro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegistroA__miemb__52593CB8">
+          <End Role="Miembro" Type="Self.Miembro" Multiplicity="0..1" />
+          <End Role="RegistroAcceso" Type="Self.RegistroAcceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miembro">
+              <PropertyRef Name="miembro_id" />
+            </Principal>
+            <Dependent Role="RegistroAcceso">
+              <PropertyRef Name="miembro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GimnasioDBModelStoreContainer">
+          <EntitySet Name="Actividad" EntityType="Self.Actividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clase" EntityType="Self.Clase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inscripcion" EntityType="Self.Inscripcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Miembro" EntityType="Self.Miembro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistroAcceso" EntityType="Self.RegistroAcceso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rutina" EntityType="Self.Rutina" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Inscripci__activ__59063A47" Association="Self.FK__Inscripci__activ__59063A47">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inscripci__clase__5812160E" Association="Self.FK__Inscripci__clase__5812160E">
+            <End Role="Clase" EntitySet="Clase" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inscripci__miemb__571DF1D5" Association="Self.FK__Inscripci__miemb__571DF1D5">
+            <End Role="Miembro" EntitySet="Miembro" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pago__miembro_id__5DCAEF64" Association="Self.FK__Pago__miembro_id__5DCAEF64">
+            <End Role="Miembro" EntitySet="Miembro" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegistroA__miemb__52593CB8" Association="Self.FK__RegistroA__miemb__52593CB8">
+            <End Role="Miembro" EntitySet="Miembro" />
+            <End Role="RegistroAcceso" EntitySet="RegistroAcceso" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GimnasioDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Actividad">
+          <Key>
+            <PropertyRef Name="actividad_id" />
+          </Key>
+          <Property Name="actividad_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="horario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Inscripcion" Relationship="Self.FK__Inscripci__activ__59063A47" FromRole="Actividad" ToRole="Inscripcion" />
+        </EntityType>
+        <EntityType Name="Clase">
+          <Key>
+            <PropertyRef Name="clase_id" />
+          </Key>
+          <Property Name="clase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="horario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="capacidad" Type="Int32" />
+          <NavigationProperty Name="Inscripcion" Relationship="Self.FK__Inscripci__clase__5812160E" FromRole="Clase" ToRole="Inscripcion" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="equipo_id" />
+          </Key>
+          <Property Name="equipo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="capacidad" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Inscripcion">
+          <Key>
+            <PropertyRef Name="inscripcion_id" />
+          </Key>
+          <Property Name="inscripcion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="miembro_id" Type="Int32" />
+          <Property Name="clase_id" Type="Int32" />
+          <Property Name="actividad_id" Type="Int32" />
+          <Property Name="fecha_inscripcion" Type="DateTime" Precision="3" />
+          <Property Name="estado_inscripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="detalles" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Actividad" Relationship="Self.FK__Inscripci__activ__59063A47" FromRole="Inscripcion" ToRole="Actividad" />
+          <NavigationProperty Name="Clase" Relationship="Self.FK__Inscripci__clase__5812160E" FromRole="Inscripcion" ToRole="Clase" />
+          <NavigationProperty Name="Miembro" Relationship="Self.FK__Inscripci__miemb__571DF1D5" FromRole="Inscripcion" ToRole="Miembro" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="instructor_id" />
+          </Key>
+          <Property Name="instructor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="especialidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="horarios_disponibles" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Miembro">
+          <Key>
+            <PropertyRef Name="miembro_id" />
+          </Key>
+          <Property Name="miembro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_inicio_membresia" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Inscripcion" Relationship="Self.FK__Inscripci__miemb__571DF1D5" FromRole="Miembro" ToRole="Inscripcion" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__miembro_id__5DCAEF64" FromRole="Miembro" ToRole="Pago" />
+          <NavigationProperty Name="RegistroAcceso" Relationship="Self.FK__RegistroA__miemb__52593CB8" FromRole="Miembro" ToRole="RegistroAcceso" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="pago_id" />
+          </Key>
+          <Property Name="pago_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="miembro_id" Type="Int32" />
+          <Property Name="fecha_pago" Type="DateTime" Precision="3" />
+          <Property Name="monto" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="metodo_pago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado_pago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Miembro" Relationship="Self.FK__Pago__miembro_id__5DCAEF64" FromRole="Pago" ToRole="Miembro" />
+        </EntityType>
+        <EntityType Name="RegistroAcceso">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="miembro_id" Type="Int32" />
+          <Property Name="fecha_ingreso" Type="DateTime" Precision="3" />
+          <Property Name="fecha_salida" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Miembro" Relationship="Self.FK__RegistroA__miemb__52593CB8" FromRole="RegistroAcceso" ToRole="Miembro" />
+        </EntityType>
+        <EntityType Name="Rutina">
+          <Key>
+            <PropertyRef Name="rutina_id" />
+          </Key>
+          <Property Name="rutina_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="duracion" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__Inscripci__activ__59063A47">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="actividad_id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="actividad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inscripci__clase__5812160E">
+          <End Role="Clase" Type="Self.Clase" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clase">
+              <PropertyRef Name="clase_id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="clase_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inscripci__miemb__571DF1D5">
+          <End Role="Miembro" Type="Self.Miembro" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miembro">
+              <PropertyRef Name="miembro_id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="miembro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pago__miembro_id__5DCAEF64">
+          <End Role="Miembro" Type="Self.Miembro" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miembro">
+              <PropertyRef Name="miembro_id" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="miembro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RegistroA__miemb__52593CB8">
+          <End Role="Miembro" Type="Self.Miembro" Multiplicity="0..1" />
+          <End Role="RegistroAcceso" Type="Self.RegistroAcceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miembro">
+              <PropertyRef Name="miembro_id" />
+            </Principal>
+            <Dependent Role="RegistroAcceso">
+              <PropertyRef Name="miembro_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GimnasioDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actividad" EntityType="Self.Actividad" />
+          <EntitySet Name="Clase" EntityType="Self.Clase" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" />
+          <EntitySet Name="Inscripcion" EntityType="Self.Inscripcion" />
+          <EntitySet Name="Instructor" EntityType="Self.Instructor" />
+          <EntitySet Name="Miembro" EntityType="Self.Miembro" />
+          <EntitySet Name="Pago" EntityType="Self.Pago" />
+          <EntitySet Name="RegistroAcceso" EntityType="Self.RegistroAcceso" />
+          <EntitySet Name="Rutina" EntityType="Self.Rutina" />
+          <AssociationSet Name="FK__Inscripci__activ__59063A47" Association="Self.FK__Inscripci__activ__59063A47">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inscripci__clase__5812160E" Association="Self.FK__Inscripci__clase__5812160E">
+            <End Role="Clase" EntitySet="Clase" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inscripci__miemb__571DF1D5" Association="Self.FK__Inscripci__miemb__571DF1D5">
+            <End Role="Miembro" EntitySet="Miembro" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pago__miembro_id__5DCAEF64" Association="Self.FK__Pago__miembro_id__5DCAEF64">
+            <End Role="Miembro" EntitySet="Miembro" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RegistroA__miemb__52593CB8" Association="Self.FK__RegistroA__miemb__52593CB8">
+            <End Role="Miembro" EntitySet="Miembro" />
+            <End Role="RegistroAcceso" EntitySet="RegistroAcceso" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GimnasioDBModelStoreContainer" CdmEntityContainer="GimnasioDBEntities">
+          <EntitySetMapping Name="Actividad">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Actividad">
+              <MappingFragment StoreEntitySet="Actividad">
+                <ScalarProperty Name="actividad_id" ColumnName="actividad_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="horario" ColumnName="horario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clase">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Clase">
+              <MappingFragment StoreEntitySet="Clase">
+                <ScalarProperty Name="clase_id" ColumnName="clase_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="horario" ColumnName="horario" />
+                <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipo">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Equipo">
+              <MappingFragment StoreEntitySet="Equipo">
+                <ScalarProperty Name="equipo_id" ColumnName="equipo_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inscripcion">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Inscripcion">
+              <MappingFragment StoreEntitySet="Inscripcion">
+                <ScalarProperty Name="inscripcion_id" ColumnName="inscripcion_id" />
+                <ScalarProperty Name="miembro_id" ColumnName="miembro_id" />
+                <ScalarProperty Name="clase_id" ColumnName="clase_id" />
+                <ScalarProperty Name="actividad_id" ColumnName="actividad_id" />
+                <ScalarProperty Name="fecha_inscripcion" ColumnName="fecha_inscripcion" />
+                <ScalarProperty Name="estado_inscripcion" ColumnName="estado_inscripcion" />
+                <ScalarProperty Name="detalles" ColumnName="detalles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instructor">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Instructor">
+              <MappingFragment StoreEntitySet="Instructor">
+                <ScalarProperty Name="instructor_id" ColumnName="instructor_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="especialidad" ColumnName="especialidad" />
+                <ScalarProperty Name="horarios_disponibles" ColumnName="horarios_disponibles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Miembro">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Miembro">
+              <MappingFragment StoreEntitySet="Miembro">
+                <ScalarProperty Name="miembro_id" ColumnName="miembro_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="fecha_inicio_membresia" ColumnName="fecha_inicio_membresia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pago">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Pago">
+              <MappingFragment StoreEntitySet="Pago">
+                <ScalarProperty Name="pago_id" ColumnName="pago_id" />
+                <ScalarProperty Name="miembro_id" ColumnName="miembro_id" />
+                <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="metodo_pago" ColumnName="metodo_pago" />
+                <ScalarProperty Name="estado_pago" ColumnName="estado_pago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistroAcceso">
+            <EntityTypeMapping TypeName="GimnasioDBModel.RegistroAcceso">
+              <MappingFragment StoreEntitySet="RegistroAcceso">
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
+                <ScalarProperty Name="miembro_id" ColumnName="miembro_id" />
+                <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+                <ScalarProperty Name="fecha_salida" ColumnName="fecha_salida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rutina">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Rutina">
+              <MappingFragment StoreEntitySet="Rutina">
+                <ScalarProperty Name="rutina_id" ColumnName="rutina_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="duracion" ColumnName="duracion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
