@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GimnasioDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clase">
+          <Key>
+            <PropertyRef Name="Clase_id" />
+          </Key>
+          <Property Name="Clase_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="Horario" Type="varchar" MaxLength="100" />
+          <Property Name="Capacidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="Equipo_id" />
+          </Key>
+          <Property Name="Equipo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="Capacidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Inscripcion">
+          <Key>
+            <PropertyRef Name="Inscripcion_id" />
+          </Key>
+          <Property Name="Inscripcion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="Clase_id" Type="int" />
+          <Property Name="Fecha_inscripcion" Type="datetime" />
+          <Property Name="Estado_inscripcion" Type="bit" Nullable="false" />
+          <Property Name="Detalles" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="Pago_id" />
+          </Key>
+          <Property Name="Pago_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="Fecha_pago" Type="datetime" />
+          <Property Name="Monto" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Metodo_pago" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreRol" Type="varchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rutina">
+          <Key>
+            <PropertyRef Name="Rutina_id" />
+          </Key>
+          <Property Name="Rutina_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="Duracion" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contrasenna" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Identificacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="IdRol" Type="tinyint" Nullable="false" />
+          <Property Name="FechaCaducidad" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Inscripci__Clase__534D60F1">
+          <End Role="Clase" Type="Self.Clase" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clase">
+              <PropertyRef Name="Clase_id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="Clase_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inscripci__IdUsu__52593CB8">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pago__IdUsuario__5812160E">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__IdRol__4BAC3F29">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GimnasioDBModelStoreContainer">
+          <EntitySet Name="Clase" EntityType="Self.Clase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inscripcion" EntityType="Self.Inscripcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rutina" EntityType="Self.Rutina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Inscripci__Clase__534D60F1" Association="Self.FK__Inscripci__Clase__534D60F1">
+            <End Role="Clase" EntitySet="Clase" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inscripci__IdUsu__52593CB8" Association="Self.FK__Inscripci__IdUsu__52593CB8">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pago__IdUsuario__5812160E" Association="Self.FK__Pago__IdUsuario__5812160E">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__IdRol__4BAC3F29" Association="Self.FK__Usuario__IdRol__4BAC3F29">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GimnasioDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clase">
+          <Key>
+            <PropertyRef Name="Clase_id" />
+          </Key>
+          <Property Name="Clase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Horario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Capacidad" Type="Int32" />
+          <NavigationProperty Name="Inscripcion" Relationship="Self.FK__Inscripci__Clase__534D60F1" FromRole="Clase" ToRole="Inscripcion" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="Equipo_id" />
+          </Key>
+          <Property Name="Equipo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Capacidad" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Inscripcion">
+          <Key>
+            <PropertyRef Name="Inscripcion_id" />
+          </Key>
+          <Property Name="Inscripcion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <Property Name="Clase_id" Type="Int32" />
+          <Property Name="Fecha_inscripcion" Type="DateTime" Precision="3" />
+          <Property Name="Estado_inscripcion" Type="Boolean" Nullable="false" />
+          <Property Name="Detalles" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Clase" Relationship="Self.FK__Inscripci__Clase__534D60F1" FromRole="Inscripcion" ToRole="Clase" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Inscripci__IdUsu__52593CB8" FromRole="Inscripcion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="Pago_id" />
+          </Key>
+          <Property Name="Pago_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <Property Name="Fecha_pago" Type="DateTime" Precision="3" />
+          <Property Name="Monto" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Metodo_pago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Pago__IdUsuario__5812160E" FromRole="Pago" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreRol" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__IdRol__4BAC3F29" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Rutina">
+          <Key>
+            <PropertyRef Name="Rutina_id" />
+          </Key>
+          <Property Name="Rutina_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Duracion" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contrasenna" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Identificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdRol" Type="Byte" Nullable="false" />
+          <Property Name="FechaCaducidad" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Inscripcion" Relationship="Self.FK__Inscripci__IdUsu__52593CB8" FromRole="Usuario" ToRole="Inscripcion" />
+          <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__IdUsuario__5812160E" FromRole="Usuario" ToRole="Pago" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK__Usuario__IdRol__4BAC3F29" FromRole="Usuario" ToRole="Rol" />
+        </EntityType>
+        <Association Name="FK__Inscripci__Clase__534D60F1">
+          <End Role="Clase" Type="Self.Clase" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clase">
+              <PropertyRef Name="Clase_id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="Clase_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inscripci__IdUsu__52593CB8">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pago__IdUsuario__5812160E">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__IdRol__4BAC3F29">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GimnasioDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clase" EntityType="Self.Clase" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" />
+          <EntitySet Name="Inscripcion" EntityType="Self.Inscripcion" />
+          <EntitySet Name="Pago" EntityType="Self.Pago" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="Rutina" EntityType="Self.Rutina" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK__Inscripci__Clase__534D60F1" Association="Self.FK__Inscripci__Clase__534D60F1">
+            <End Role="Clase" EntitySet="Clase" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inscripci__IdUsu__52593CB8" Association="Self.FK__Inscripci__IdUsu__52593CB8">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pago__IdUsuario__5812160E" Association="Self.FK__Pago__IdUsuario__5812160E">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pago" EntitySet="Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__IdRol__4BAC3F29" Association="Self.FK__Usuario__IdRol__4BAC3F29">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GimnasioDBModelStoreContainer" CdmEntityContainer="GimnasioDBEntities">
+          <EntitySetMapping Name="Clase">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Clase">
+              <MappingFragment StoreEntitySet="Clase">
+                <ScalarProperty Name="Clase_id" ColumnName="Clase_id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipo">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Equipo">
+              <MappingFragment StoreEntitySet="Equipo">
+                <ScalarProperty Name="Equipo_id" ColumnName="Equipo_id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inscripcion">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Inscripcion">
+              <MappingFragment StoreEntitySet="Inscripcion">
+                <ScalarProperty Name="Inscripcion_id" ColumnName="Inscripcion_id" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Clase_id" ColumnName="Clase_id" />
+                <ScalarProperty Name="Fecha_inscripcion" ColumnName="Fecha_inscripcion" />
+                <ScalarProperty Name="Estado_inscripcion" ColumnName="Estado_inscripcion" />
+                <ScalarProperty Name="Detalles" ColumnName="Detalles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pago">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Pago">
+              <MappingFragment StoreEntitySet="Pago">
+                <ScalarProperty Name="Pago_id" ColumnName="Pago_id" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Metodo_pago" ColumnName="Metodo_pago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rutina">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Rutina">
+              <MappingFragment StoreEntitySet="Rutina">
+                <ScalarProperty Name="Rutina_id" ColumnName="Rutina_id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="GimnasioDBModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Contrasenna" ColumnName="Contrasenna" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="FechaCaducidad" ColumnName="FechaCaducidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

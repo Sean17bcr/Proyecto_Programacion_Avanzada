@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="985461a62c934221a34c6835218d16b0" Name="Diagram1">
+        <EntityTypeShape EntityType="GimnasioDBModel.Clase" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GimnasioDBModel.Equipo" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GimnasioDBModel.Inscripcion" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GimnasioDBModel.Pago" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="GimnasioDBModel.Rol" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="GimnasioDBModel.Rutina" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GimnasioDBModel.Usuario" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="GimnasioDBModel.FK__Inscripci__Clase__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="GimnasioDBModel.FK__Inscripci__IdUsu__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="GimnasioDBModel.FK__Pago__IdUsuario__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="GimnasioDBModel.FK__Usuario__IdRol__4BAC3F29" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
