@@ -14,16 +14,14 @@ namespace Api_ProyectoWeb.Models
     
     public partial class Inscripcion
     {
-        public int inscripcion_id { get; set; }
-        public Nullable<int> miembro_id { get; set; }
-        public Nullable<int> clase_id { get; set; }
-        public Nullable<int> actividad_id { get; set; }
-        public Nullable<System.DateTime> fecha_inscripcion { get; set; }
-        public string estado_inscripcion { get; set; }
-        public string detalles { get; set; }
+        public int Inscripcion_id { get; set; }
+        public Nullable<int> IdUsuario { get; set; }
+        public Nullable<int> Clase_id { get; set; }
+        public Nullable<System.DateTime> Fecha_inscripcion { get; set; }
+        public bool Estado_inscripcion { get; set; }
+        public string Detalles { get; set; }
     
-        public virtual Actividad Actividad { get; set; }
         public virtual Clase Clase { get; set; }
-        public virtual Miembro Miembro { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

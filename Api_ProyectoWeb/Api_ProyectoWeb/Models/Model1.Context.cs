@@ -25,14 +25,12 @@ namespace Api_ProyectoWeb.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Actividad> Actividad { get; set; }
         public DbSet<Clase> Clase { get; set; }
         public DbSet<Equipo> Equipo { get; set; }
         public DbSet<Inscripcion> Inscripcion { get; set; }
-        public DbSet<Instructor> Instructor { get; set; }
-        public DbSet<Miembro> Miembro { get; set; }
         public DbSet<Pago> Pago { get; set; }
-        public DbSet<RegistroAcceso> RegistroAcceso { get; set; }
+        public DbSet<Rol> Rol { get; set; }
         public DbSet<Rutina> Rutina { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
     }
 }

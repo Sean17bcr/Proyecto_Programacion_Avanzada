@@ -14,13 +14,12 @@ namespace Api_ProyectoWeb.Models
     
     public partial class Pago
     {
-        public int pago_id { get; set; }
-        public Nullable<int> miembro_id { get; set; }
-        public Nullable<System.DateTime> fecha_pago { get; set; }
-        public Nullable<decimal> monto { get; set; }
-        public string metodo_pago { get; set; }
-        public string estado_pago { get; set; }
+        public int Pago_id { get; set; }
+        public Nullable<int> IdUsuario { get; set; }
+        public Nullable<System.DateTime> Fecha_pago { get; set; }
+        public Nullable<decimal> Monto { get; set; }
+        public string Metodo_pago { get; set; }
     
-        public virtual Miembro Miembro { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

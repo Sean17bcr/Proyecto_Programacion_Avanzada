@@ -12,24 +12,25 @@ namespace Api_ProyectoWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Miembro
+    public partial class Usuario
     {
-        public Miembro()
+        public Usuario()
         {
             this.Inscripcion = new HashSet<Inscripcion>();
             this.Pago = new HashSet<Pago>();
-            this.RegistroAcceso = new HashSet<RegistroAcceso>();
         }
     
-        public int miembro_id { get; set; }
-        public string nombre { get; set; }
-        public string direccion { get; set; }
-        public string telefono { get; set; }
-        public string correo_electronico { get; set; }
-        public System.DateTime fecha_inicio_membresia { get; set; }
+        public int IdUsuario { get; set; }
+        public string CorreoElectronico { get; set; }
+        public string Contrasenna { get; set; }
+        public string Identificacion { get; set; }
+        public string Nombre { get; set; }
+        public string Telefono { get; set; }
+        public byte IdRol { get; set; }
+        public System.DateTime FechaCaducidad { get; set; }
     
         public virtual ICollection<Inscripcion> Inscripcion { get; set; }
         public virtual ICollection<Pago> Pago { get; set; }
-        public virtual ICollection<RegistroAcceso> RegistroAcceso { get; set; }
+        public virtual Rol Rol { get; set; }
     }
 }

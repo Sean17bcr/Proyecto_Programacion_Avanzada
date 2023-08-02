@@ -12,13 +12,16 @@ namespace Api_ProyectoWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class RegistroAcceso
+    public partial class Rol
     {
-        public int registro_id { get; set; }
-        public Nullable<int> miembro_id { get; set; }
-        public Nullable<System.DateTime> fecha_ingreso { get; set; }
-        public Nullable<System.DateTime> fecha_salida { get; set; }
+        public Rol()
+        {
+            this.Usuario = new HashSet<Usuario>();
+        }
     
-        public virtual Miembro Miembro { get; set; }
+        public byte IdRol { get; set; }
+        public string NombreRol { get; set; }
+    
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

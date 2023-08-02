@@ -14,9 +14,9 @@ namespace Api_ProyectoWeb.Models
     
     public partial class Rutina
     {
-        public int rutina_id { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
-        public Nullable<int> duracion { get; set; }
+        public int Rutina_id { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public Nullable<int> Duracion { get; set; }
     }
 }

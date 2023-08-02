@@ -19,11 +19,11 @@ namespace Api_ProyectoWeb.Models
             this.Inscripcion = new HashSet<Inscripcion>();
         }
     
-        public int clase_id { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
-        public string horario { get; set; }
-        public Nullable<int> capacidad { get; set; }
+        public int Clase_id { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public string Horario { get; set; }
+        public Nullable<int> Capacidad { get; set; }
     
         public virtual ICollection<Inscripcion> Inscripcion { get; set; }
     }
