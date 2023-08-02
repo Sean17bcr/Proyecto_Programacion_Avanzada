@@ -9,11 +9,11 @@ using System.Web.Http;
 
 namespace Api_ProyectoWeb.Controllers
 {
-    public class MiembroController : ApiController
+    public class UsuarioController : ApiController
     {
         [HttpPost]
         [Route("api/AgregarMiembro")]
-        public int AgregarMiembro(MiembroEnt entidad)
+        public int AgregarMiembro(UsuarioEnt entidad)
         {
             using (var bd = new GimnasioDBEntities())
             {
@@ -24,7 +24,7 @@ namespace Api_ProyectoWeb.Controllers
 
         [HttpDelete]
         [Route("api/EliminarMiembro")]
-        public MiembroEnt EliminarMiembro(MiembroEnt entidad)
+        public UsuarioEnt EliminarMiembro(UsuarioEnt entidad)
         {
             using (var bd = new GimnasioDBEntities())
             {
@@ -35,7 +35,7 @@ namespace Api_ProyectoWeb.Controllers
 
         [HttpPut]
         [Route("api/EditarMiembro")]
-        public int EditarMiembro(MiembroEnt entidad)
+        public int EditarMiembro(UsuarioEnt entidad)
         {
             using (var bd = new GimnasioDBEntities())
             {
@@ -45,7 +45,7 @@ namespace Api_ProyectoWeb.Controllers
 
         [HttpGet]
         [Route("api/BuscarMiembrosPorNombre")]
-        public MiembroEnt BuscarMiembrosPorNombre(long q)
+        public UsuarioEnt BuscarMiembrosPorNombre(long q)
         {
             using (var bd = new GimnasioDBEntities())
             {
@@ -55,7 +55,7 @@ namespace Api_ProyectoWeb.Controllers
 
                 if (datos != null)
                 {
-                    MiembroEnt resp = new MiembroEnt();
+                    UsuarioEnt resp = new UsuarioEnt();
                     resp.nombre = datos.nombre;
                     resp.direccion = datos.direccion;
                     resp.telefono = datos.telefono;
@@ -70,7 +70,7 @@ namespace Api_ProyectoWeb.Controllers
 
         [HttpGet]
         [Route("api/GenerarInformePagoInscripcion")]
-        public MiembroEnt GenerarInformePagoInscripcion(long q)
+        public UsuarioEnt GenerarInformePagoInscripcion(long q)
         {
             using (var bd = new GimnasioDBEntities())
             {

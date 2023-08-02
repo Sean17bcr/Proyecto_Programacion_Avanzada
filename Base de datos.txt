@@ -1,0 +1,87 @@
+-- Crear la base de datos
+CREATE DATABASE GimnasioDB;
+
+-- Usar la base de datos
+USE GimnasioDB;
+
+CREATE TABLE [dbo].[Rol](
+	[IdRol] [tinyint] IDENTITY(1,1) NOT NULL,
+	[NombreRol] [varchar](75) NOT NULL,
+ CONSTRAINT [PK_Rol] PRIMARY KEY CLUSTERED 
+(
+	[IdRol] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+-- Tabla Usuario
+create table Usuario(
+	IdUsuario INT PRIMARY KEY IDENTITY NOT NULL,
+	CorreoElectronico varchar(50) NOT NULL,
+	Contrasenna varchar(20) NOT NULL,
+	Identificacion varchar(20) NOT NULL,
+	Nombre varchar(100) NOT NULL,
+	Telefono VARCHAR(20),
+	IdRol tinyint NOT NULL,
+	FechaCaducidad datetime NOT NULL,
+	FOREIGN KEY (IdRol) REFERENCES Rol(IdRol)
+);
+
+-- Tabla Clase
+CREATE TABLE Clase (
+  Clase_id INT PRIMARY KEY IDENTITY,
+  Nombre VARCHAR(50) NOT NULL,
+  Descripcion VARCHAR(500),
+  Horario VARCHAR(100),
+  Capacidad INT
+);
+
+-- Tabla Rutina
+CREATE TABLE Rutina (
+  Rutina_id INT PRIMARY KEY IDENTITY,
+  Nombre VARCHAR(50) NOT NULL,
+  Descripcion VARCHAR(500),
+  Duracion INT
+);
+
+
+-- Tabla Inscripcion
+CREATE TABLE Inscripcion (
+  Inscripcion_id INT PRIMARY KEY IDENTITY,
+  IdUsuario INT,
+  Clase_id INT,
+  Fecha_inscripcion DATETIME,
+  Estado_inscripcion bit NOT NULL,
+  Detalles VARCHAR(500),
+  FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario),
+  FOREIGN KEY (Clase_id) REFERENCES Clase(Clase_id)
+);
+
+
+-- Tabla Equipo
+CREATE TABLE Equipo (
+  Equipo_id INT PRIMARY KEY IDENTITY,
+  Nombre VARCHAR(50) NOT NULL,
+  Descripcion VARCHAR(500),
+  Capacidad INT
+);
+
+-- Tabla Pago
+CREATE TABLE Pago (
+  Pago_id INT PRIMARY KEY IDENTITY,
+  IdUsuario INT,
+  Fecha_pago DATETIME,
+  Monto DECIMAL(10, 2),
+  Metodo_pago VARCHAR(50),
+  FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario)
+);
+
+
+SET IDENTITY_INSERT [dbo].[Rol] ON 
+GO
+INSERT [dbo].[Rol] ([IdRol], [NombreRol]) VALUES (1, N'Administrador')
+GO
+INSERT [dbo].[Rol] ([IdRol], [NombreRol]) VALUES (2, N'Usuario')
+GO
+SET IDENTITY_INSERT [dbo].[Rol] OFF
+GO

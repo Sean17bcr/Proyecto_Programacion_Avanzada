@@ -1,0 +1,2 @@
+C:\Users\seanb\Documents\Proyecto_Programacion_Avanzada\Api_ProyectoWeb\Api_ProyectoWeb\obj\Debug\Api_ProyectoWeb.csproj.AssemblyReference.cache
+C:\Users\seanb\Documents\Proyecto_Programacion_Avanzada\Api_ProyectoWeb\Api_ProyectoWeb\obj\Debug\Api_ProyectoWeb.csproj.CoreCompileInputs.cache

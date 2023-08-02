@@ -7,10 +7,10 @@ namespace Api_ProyectoWeb.Entities
 {
     public class EquipoEnt
     {
-        public long equipo_id { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
-        public int capacidad { get; set; }
+        public long Equipo_id { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public int Capacidad { get; set; }
        
     }
 }

@@ -7,11 +7,11 @@ namespace Api_ProyectoWeb.Entities
 {
     public class ClaseEnt
     {
-        public long clase_id { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
-        public string horario { get; set; }
-        public int capacidad { get; set; }
+        public long Clase_id { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public string Horario { get; set; }
+        public int Capacidad { get; set; }
        
     }
 }

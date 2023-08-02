@@ -5,15 +5,13 @@ using System.Web;
 
 namespace Api_ProyectoWeb.Entities
 {
-    public class InscripcionEnt
+    public class InscripcioEnt
     {
-        public long inscripcion_id { get; set; }
-        public long miembro_id { get; set; }
-        public long clase_id { get; set; }
-        public long actividad_id { get; set; }
-        public DateTime fecha_inscripcion { get; set; }
-        public bool estado_inscripcion { get; set; }
-        public String detalles { get; set; }
-
+        public long Inscripcion_id { get; set; }
+        public long IdUsuario { get; set; }
+        public long Clase_id { get; set; }
+        public DateTime Fecha_inscripcion { get; set; }
+        public bool Estado_inscripcion { get; set; }
+        public string Detalles { get; set; }
     }
 }
