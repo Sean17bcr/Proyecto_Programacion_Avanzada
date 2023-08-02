@@ -12,8 +12,8 @@ namespace Api_ProyectoWeb.Controllers
     public class UsuarioController : ApiController
     {
         [HttpPost]
-        [Route("api/AgregarMiembro")]
-        public int AgregarMiembro(UsuarioEnt entidad)
+        [Route("api/AgregarUsuario")]
+        public int AgregarUsuario(UsuarioEnt entidad)
         {
             using (var bd = new GimnasioDBEntities())
             {
@@ -23,8 +23,8 @@ namespace Api_ProyectoWeb.Controllers
         }
 
         [HttpDelete]
-        [Route("api/EliminarMiembro")]
-        public UsuarioEnt EliminarMiembro(UsuarioEnt entidad)
+        [Route("api/EliminarUsuario")]
+        public UsuarioEnt EliminarUsuario(UsuarioEnt entidad)
         {
             using (var bd = new GimnasioDBEntities())
             {
@@ -34,8 +34,8 @@ namespace Api_ProyectoWeb.Controllers
         }
 
         [HttpPut]
-        [Route("api/EditarMiembro")]
-        public int EditarMiembro(UsuarioEnt entidad)
+        [Route("api/EditarUsuario")]
+        public int EditarUsuario(UsuarioEnt entidad)
         {
             using (var bd = new GimnasioDBEntities())
             {
@@ -44,8 +44,8 @@ namespace Api_ProyectoWeb.Controllers
         }
 
         [HttpGet]
-        [Route("api/BuscarMiembrosPorNombre")]
-        public UsuarioEnt BuscarMiembrosPorNombre(long q)
+        [Route("api/BuscarUsuarioPorNombre")]
+        public UsuarioEnt BuscarUsuarioPorNombre(long q)
         {
             using (var bd = new GimnasioDBEntities())
             {
