@@ -12,13 +12,13 @@ namespace Api_ProyectoWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Equipo
+    public partial class Bitacora
     {
-        public int Equipo_id { get; set; }
-        public Nullable<int> IdUsuario { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public int Cantidad { get; set; }
+        public long IdBitacora { get; set; }
+        public System.DateTime FechaHora { get; set; }
+        public string Origen { get; set; }
+        public string Mensaje { get; set; }
+        public int IdUsuario { get; set; }
     
         public virtual Usuario Usuario { get; set; }
     }

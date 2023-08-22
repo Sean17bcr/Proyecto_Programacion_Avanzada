@@ -12,14 +12,12 @@ namespace Api_ProyectoWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Equipo
+    public partial class sysdiagrams
     {
-        public int Equipo_id { get; set; }
-        public Nullable<int> IdUsuario { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public int Cantidad { get; set; }
-    
-        public virtual Usuario Usuario { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

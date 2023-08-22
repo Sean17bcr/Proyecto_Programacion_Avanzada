@@ -12,14 +12,19 @@ namespace Api_ProyectoWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Equipo
+    public partial class Membresia
     {
-        public int Equipo_id { get; set; }
-        public Nullable<int> IdUsuario { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public int Cantidad { get; set; }
+        public Membresia()
+        {
+            this.Pago = new HashSet<Pago>();
+            this.Usuario = new HashSet<Usuario>();
+        }
     
-        public virtual Usuario Usuario { get; set; }
+        public int IdMembresia { get; set; }
+        public string TipoMembresia { get; set; }
+        public decimal PrecioMembresia { get; set; }
+    
+        public virtual ICollection<Pago> Pago { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

@@ -16,10 +16,12 @@ namespace Api_ProyectoWeb.Models
     {
         public int Pago_id { get; set; }
         public Nullable<int> IdUsuario { get; set; }
-        public Nullable<System.DateTime> Fecha_pago { get; set; }
-        public Nullable<decimal> Monto { get; set; }
+        public Nullable<int> IdMembresia { get; set; }
+        public System.DateTime Fecha_pago { get; set; }
+        public decimal Monto { get; set; }
         public string Metodo_pago { get; set; }
     
+        public virtual Membresia Membresia { get; set; }
         public virtual Usuario Usuario { get; set; }
     }
 }
