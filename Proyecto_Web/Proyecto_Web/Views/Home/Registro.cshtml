@@ -1,8 +1,8 @@
-﻿
-@{
-    ViewBag.Title = "Registro";
-    Layout = "~/Views/Shared/_Layout - Inicio.cshtml";
-}
+﻿@model Proyecto_Web.Entities.UsuarioEnt
+@{ ViewBag.Title = "Registro";
+    Layout = "~/Views/Shared/_Layout - Inicio.cshtml"; }
+@using (Html.BeginForm("Registrarse", "Home", FormMethod.Post))
+{
 <div class="unix-login">
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -11,29 +11,39 @@
                     <div class="login-logo">
                         <a href="index.html"><span>Gimnasio SVAM</span></a>
                     </div>
+
+                    @if (ViewBag.MsjPantalla != null)
+                    {
+    <div style="color:white" class="alert alert-primary" role="alert">
+        @ViewBag.MsjPantalla
+    </div>}
+
                     <div class="login-form">
                         <h4>Registrarse</h4>
                         <form>
-                            <div class="form-group">
-                                <label>Nombre de Usuario</label>
-                                <input type="email" class="form-control" placeholder="Nombre de Usuario">
+                            <div class="form-group col-md-12 mb-4">
+                                @Html.TextBoxFor(m => m.Identificacion, new { @type = "text", @class = "form-control input-lg", @placeholder = "Identificación" })
                             </div>
-                            <div class="form-group">
-                                <label>Correo electrónico</label>
-                                <input type="email" class="form-control" placeholder="Correo">
+                            <div class="form-group col-md-12 mb-4">
+                                @Html.TextBoxFor(m => m.Nombre, new { @type = "text", @class = "form-control input-lg", @placeholder = "Nombre" })
                             </div>
-                            <div class="form-group">
-                                <label>Contraseña</label>
-                                <input type="password" class="form-control" placeholder="Contraseña">
+                            <div class="form-group col-md-12 mb-4">
+                                @Html.TextBoxFor(m => m.CorreoElectronico, new { @type = "email", @class = "form-control input-lg", @placeholder = "Correo Electrónico" })
                             </div>
-                            <div class="form-group">
-                                <label>Confirmar Contraseña</label>
-                                <input type="password" class="form-control" placeholder="Confirmar Contraseña">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Registrarse</button>
+                            div class="form-group col-md-12 mb-4">
+                            @Html.TextBoxFor(m => m.Telefono, new { @type = "text", @class = "form-control input-lg", @placeholder = "Teléfono" })
 
-                            <div class="register-link m-t-15 text-center">
-                                <p>Already have account ? <a href="@Url.Action("Index", "Home")">Ir al inicio</a></p>
+                            <div class="form-group col-md-12 ">
+                                @Html.TextBoxFor(m => m.Contrasenna, new { @type = "password", @class = "form-control input-lg", @placeholder = "Contraseña" })
+                            </div>
+                            <div class="form-group col-md-12 ">
+                                @Html.TextBoxFor(m => m.ConfirmarContrasenna, new { @type = "password", @class = "form-control input-lg", @placeholder = "Confirmar Contraseña" })
+                            </div>
+                            <div class="col-md-12" style="text-align:center">
+                                <button type="submit" class="btn btn-primary btn-pill mb-4">Registrarse</button>
+                                <p>
+                                    <a class="text-blue" href="@Url.Action("Index","Home")">Ir al Inicio</a>
+                                </p>
                             </div>
                         </form>
                     </div>
@@ -41,4 +51,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>                                  
+}
