@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Proyecto_Web.Entities.MembresiaEnt>
+@{
+    ViewBag.Title = "ConsultarMembresiasUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-xl-12">
+
+        <div class="card card-default">
+
+            <div class="card-header">
+                <h2>Cursos</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-10">
+                    <a href="@Url.Action("Agregar","Membresia")" class="btn btn-primary"> <i class="fa fa-plus"></i>&nbsp;&nbsp; Agregar </a>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-10">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr style="text-align:center">
+                                <th>Tipo de Membresia</th>
+                                <th>Precio de la Membresia</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td style="width:20%">@item.TipoMembresia</td>
+                                    <td style="width:15%">@item.PrecioMembresia</td>
+                                    <td style="width:10%;text-align:center">
+                                        <a href="@Url.Action("Editar","Membresia", new { q = item.IdMembresia })"><i class="fa fa-pencil fa-lg"></i></a>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <a href="@Url.Action("EliminarMembresia","Membresia", new { q = item.IdMembresia })"><i class="fa fa-trash fa-lg"></i></a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+            <br />
+            <br />
+
+        </div>
+    </div>
+</div>
+

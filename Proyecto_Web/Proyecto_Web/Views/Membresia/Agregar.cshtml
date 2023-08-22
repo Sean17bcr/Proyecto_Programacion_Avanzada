@@ -1,0 +1,43 @@
+﻿@model Proyecto_Web.Entities.MembresiaEnt
+@{
+    ViewBag.Title = "Agregar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("RegistrarMembresia", "Membresia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h2>Agregar Membresia</h2>
+                </div>
+                @if (ViewBag.MsjPantalla != null)
+                {
+                    <div style="color:white" class="alert alert-primary" role="alert">
+                        @ViewBag.MsjPantalla
+                    </div>
+                }
+                <div class="card-body">
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.TipoMembresia, new { @type = "text", @class = "form-control input-lg", @placeholder = "Tipo de Membresia" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.TextAreaFor(m => m.PrecioMembresia, new { @type = "text", Style = "heigth:100px", @class = "form-control input-lg", @placeholder = "Precio de la Membresia" })
+                    </div>
+
+                    <div class="form-group">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

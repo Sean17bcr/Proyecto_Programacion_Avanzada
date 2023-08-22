@@ -1,0 +1,84 @@
+﻿@model List<Proyecto_Web.Entities.InscripcionEnt>
+
+@{
+    ViewBag.Title = "Gestion Inscripciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h2>Inscripciones a Clases</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr style="text-align:center">
+                                <th>Inscripción ID</th>
+                                <th>Nombre de Usuario</th>
+                                <th>Nombre de Clase</th>
+                                <th>Fecha Inscripción</th>
+                                <th>Estado Inscripción</th>
+                                <th>Detalles</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Inscripcion_id</td>
+                                    <td>@item.NombreUsuario</td>
+                                    <td>@item.ClaseUsuario</td>
+                                    <td>@item.Fecha_inscripcion</td>
+                                    <td>@item.Estado_inscripcion</td>
+                                    <td>@item.Detalles</td>
+                                    <td style="text-align:center">
+                                        <a href="@Url.Action("Editar", "Inscripcion", new { id = item.Inscripcion_id })"><i class="fa fa-pencil fa-lg"></i></a>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <a href="#" data-toggle="modal" data-target="#eliminarModal-@item.Inscripcion_id"><i class="fa fa-trash fa-lg"></i></a>
+                                    </td>
+                                </tr>
+
+                                <!-- Modal para confirmar la eliminación -->
+                                <div class="modal fade" id="eliminarModal-@item.Inscripcion_id" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel-@item.Inscripcion_id" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="eliminarModalLabel-@item.Inscripcion_id">Confirmar Eliminación</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Estás seguro de que deseas eliminar esta inscripción?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <a href="@Url.Action("Eliminar", "Inscripcion", new { id = item.Inscripcion_id })" class="btn btn-danger">Eliminar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <a href="@Url.Action("Agregar", "Inscripcion")" class="btn btn-primary">Agregar Inscripción</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
