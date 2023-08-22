@@ -1,0 +1,62 @@
+﻿@model Proyecto_Web.Entities.UsuarioEnt
+@{
+    ViewBag.Title = "Editar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h2>Editar Usuario</h2>
+            </div>
+            @if (ViewBag.MsjPantalla != null)
+            {
+                <div style="color:white" class="alert alert-primary" role="alert">
+                    @ViewBag.MsjPantalla
+                </div>
+            }
+            <div class="card-body">
+                @using (Html.BeginForm("EditarUsuario", "Usuario", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.HiddenFor(model => model.IdUsuario)
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.CorreoElectronico, new { @type = "email", @class = "form-control input-lg", @placeholder = "Correo Electrónico" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Identificacion, new { @type = "text", @disabled = "true", @class = "form-control input-lg", @placeholder = "Identificación" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Nombre, new { @type = "text", @disabled = "true", @class = "form-control input-lg", @placeholder = "Nombre" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Telefono, new { @type = "text", @disabled = "false", @class = "form-control input-lg", @placeholder = "Telefono" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.DropDownListFor(m => m.IdRol, ViewBag.ListaRoles as List<SelectListItem>, new { @class = "form-control input-lg" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.DropDownListFor(m => m.IdMembresia, ViewBag.ListaMembresias as List<SelectListItem>, new { @class = "form-control input-lg" })
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Guardar Cambios" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

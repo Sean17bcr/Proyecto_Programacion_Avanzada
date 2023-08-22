@@ -13,10 +13,10 @@ namespace Api_ProyectoWeb.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GimnasioDBEntities : DbContext
+    public partial class GimnasioDBPrograAvanzadaProyectoFinalEntities1 : DbContext
     {
-        public GimnasioDBEntities()
-            : base("name=GimnasioDBEntities")
+        public GimnasioDBPrograAvanzadaProyectoFinalEntities1()
+            : base("name=GimnasioDBPrograAvanzadaProyectoFinalEntities1")
         {
         }
     
@@ -25,12 +25,14 @@ namespace Api_ProyectoWeb.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Bitacora> Bitacora { get; set; }
         public DbSet<Clase> Clase { get; set; }
         public DbSet<Equipo> Equipo { get; set; }
-        public DbSet<Inscripcion> Inscripcion { get; set; }
+        public DbSet<Membresia> Membresia { get; set; }
         public DbSet<Pago> Pago { get; set; }
         public DbSet<Rol> Rol { get; set; }
         public DbSet<Rutina> Rutina { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
     }
 }

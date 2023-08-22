@@ -1,0 +1,92 @@
+﻿@model Proyecto_Web.Entities.InscripcionEnt
+
+@{
+    ViewBag.Title = "Editar Inscripción";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h2>Editar Inscripción</h2>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Editar", "Inscripcion", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.HiddenFor(model => model.Inscripcion_id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NombreUsuario, htmlAttributes: new { @class = "control-label" })
+                        @Html.DisplayFor(model => model.NombreUsuario, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ClaseUsuario, htmlAttributes: new { @class = "control-label" })
+                        @Html.DisplayFor(model => model.ClaseUsuario, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Clase_id, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Clase_id, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Clase_id, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Clase_id, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Fecha_inscripcion, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Fecha_inscripcion, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Estado_inscripcion, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Estado_inscripcion, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Detalles, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Detalles, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Guardar Cambios" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+        </div>
+
+        @functions {
+            private SelectList GetUsuariosSelectList()
+            {
+                // Obtener la lista de usuarios desde la API o la base de datos
+                // y convertirla a SelectList
+                // Supongamos que tienes un método en tu modelo para obtener usuarios
+                // List<UsuarioEnt> usuarios = ObtenerUsuariosDesdeApi();
+                // return new SelectList(usuarios, "IdUsuario", "Nombre");
+                return new SelectList(new List<SelectListItem>(), "IdUsuario", "Nombre");
+            }
+
+            private SelectList GetClasesSelectList()
+            {
+                // Obtener la lista de clases desde la API o la base de datos
+                // y convertirla a SelectList
+                // Supongamos que tienes un método en tu modelo para obtener clases
+                // List<ClaseEnt> clases = ObtenerClasesDesdeApi();
+                // return new SelectList(clases, "Clase_id", "Nombre");
+                return new SelectList(new List<SelectListItem>(), "Clase_id", "Nombre");
+            }
+        }
+    </div>
+</div>
+
+
+
+
+
+

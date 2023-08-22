@@ -1,0 +1,52 @@
+﻿@model Proyecto_Web.Entities.ClaseEnt
+
+@{
+    ViewBag.Title = "Agregar Clase";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("RegistrarClase", "Clase", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h2>Agregar Clase</h2>
+                </div>
+                @if (ViewBag.MsjPantalla != null)
+                {
+                    <div style="color:white" class="alert alert-primary" role="alert">
+                        @ViewBag.MsjPantalla
+                    </div>
+                }
+            <div class="card-body">
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Nombre, new { @type = "text", @class = "form-control input-lg", @placeholder = "Nombre" })
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Descripcion, new { @type = "text", @class = "form-control input-lg", @placeholder = "Descripcion" })
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Horario, new { @type = "text", @class = "form-control input-lg", @placeholder = "Horario" })
+                </div>
+
+                <div class="form-group">
+                    @Html.TextAreaFor(m => m.Capacidad, new { @type = "text", Style = "heigth:100px", @class = "form-control input-lg", @placeholder = "Capacidad" })
+                </div>
+
+                <div class="form-group">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
+}
+

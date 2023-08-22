@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card card-default">
+            <h2>Confirmar Eliminacion</h2>
+            <div class="card-body">
+                @using (Html.BeginForm("Eliminar", "Inscripcion", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Eliminar" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

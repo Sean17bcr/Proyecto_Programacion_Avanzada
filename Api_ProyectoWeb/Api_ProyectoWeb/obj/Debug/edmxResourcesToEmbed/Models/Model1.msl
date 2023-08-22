@@ -1,101 +1,103 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="GimnasioDBModelStoreContainer" CdmEntityContainer="GimnasioDBEntities">
-    <EntitySetMapping Name="Actividad">
-      <EntityTypeMapping TypeName="GimnasioDBModel.Actividad">
-        <MappingFragment StoreEntitySet="Actividad">
-          <ScalarProperty Name="actividad_id" ColumnName="actividad_id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="horario" ColumnName="horario" />
+  <EntityContainerMapping StorageEntityContainer="GimnasioDBPrograAvanzadaProyectoFinalModelStoreContainer" CdmEntityContainer="GimnasioDBPrograAvanzadaProyectoFinalEntities1">
+    <EntitySetMapping Name="Bitacora">
+      <EntityTypeMapping TypeName="GimnasioDBPrograAvanzadaProyectoFinalModel.Bitacora">
+        <MappingFragment StoreEntitySet="Bitacora">
+          <ScalarProperty Name="IdBitacora" ColumnName="IdBitacora" />
+          <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+          <ScalarProperty Name="Origen" ColumnName="Origen" />
+          <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Clase">
-      <EntityTypeMapping TypeName="GimnasioDBModel.Clase">
+      <EntityTypeMapping TypeName="GimnasioDBPrograAvanzadaProyectoFinalModel.Clase">
         <MappingFragment StoreEntitySet="Clase">
-          <ScalarProperty Name="clase_id" ColumnName="clase_id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="horario" ColumnName="horario" />
-          <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+          <ScalarProperty Name="Clase_id" ColumnName="Clase_id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Horario" ColumnName="Horario" />
+          <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Equipo">
-      <EntityTypeMapping TypeName="GimnasioDBModel.Equipo">
+      <EntityTypeMapping TypeName="GimnasioDBPrograAvanzadaProyectoFinalModel.Equipo">
         <MappingFragment StoreEntitySet="Equipo">
-          <ScalarProperty Name="equipo_id" ColumnName="equipo_id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+          <ScalarProperty Name="Equipo_id" ColumnName="Equipo_id" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Inscripcion">
-      <EntityTypeMapping TypeName="GimnasioDBModel.Inscripcion">
-        <MappingFragment StoreEntitySet="Inscripcion">
-          <ScalarProperty Name="inscripcion_id" ColumnName="inscripcion_id" />
-          <ScalarProperty Name="miembro_id" ColumnName="miembro_id" />
-          <ScalarProperty Name="clase_id" ColumnName="clase_id" />
-          <ScalarProperty Name="actividad_id" ColumnName="actividad_id" />
-          <ScalarProperty Name="fecha_inscripcion" ColumnName="fecha_inscripcion" />
-          <ScalarProperty Name="estado_inscripcion" ColumnName="estado_inscripcion" />
-          <ScalarProperty Name="detalles" ColumnName="detalles" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Instructor">
-      <EntityTypeMapping TypeName="GimnasioDBModel.Instructor">
-        <MappingFragment StoreEntitySet="Instructor">
-          <ScalarProperty Name="instructor_id" ColumnName="instructor_id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="especialidad" ColumnName="especialidad" />
-          <ScalarProperty Name="horarios_disponibles" ColumnName="horarios_disponibles" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Miembro">
-      <EntityTypeMapping TypeName="GimnasioDBModel.Miembro">
-        <MappingFragment StoreEntitySet="Miembro">
-          <ScalarProperty Name="miembro_id" ColumnName="miembro_id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="direccion" ColumnName="direccion" />
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
-          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
-          <ScalarProperty Name="fecha_inicio_membresia" ColumnName="fecha_inicio_membresia" />
+    <EntitySetMapping Name="Membresia">
+      <EntityTypeMapping TypeName="GimnasioDBPrograAvanzadaProyectoFinalModel.Membresia">
+        <MappingFragment StoreEntitySet="Membresia">
+          <ScalarProperty Name="IdMembresia" ColumnName="IdMembresia" />
+          <ScalarProperty Name="TipoMembresia" ColumnName="TipoMembresia" />
+          <ScalarProperty Name="PrecioMembresia" ColumnName="PrecioMembresia" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Pago">
-      <EntityTypeMapping TypeName="GimnasioDBModel.Pago">
+      <EntityTypeMapping TypeName="GimnasioDBPrograAvanzadaProyectoFinalModel.Pago">
         <MappingFragment StoreEntitySet="Pago">
-          <ScalarProperty Name="pago_id" ColumnName="pago_id" />
-          <ScalarProperty Name="miembro_id" ColumnName="miembro_id" />
-          <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
-          <ScalarProperty Name="monto" ColumnName="monto" />
-          <ScalarProperty Name="metodo_pago" ColumnName="metodo_pago" />
-          <ScalarProperty Name="estado_pago" ColumnName="estado_pago" />
+          <ScalarProperty Name="Pago_id" ColumnName="Pago_id" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdMembresia" ColumnName="IdMembresia" />
+          <ScalarProperty Name="Fecha_pago" ColumnName="Fecha_pago" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Metodo_pago" ColumnName="Metodo_pago" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RegistroAcceso">
-      <EntityTypeMapping TypeName="GimnasioDBModel.RegistroAcceso">
-        <MappingFragment StoreEntitySet="RegistroAcceso">
-          <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-          <ScalarProperty Name="miembro_id" ColumnName="miembro_id" />
-          <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
-          <ScalarProperty Name="fecha_salida" ColumnName="fecha_salida" />
+    <EntitySetMapping Name="Rol">
+      <EntityTypeMapping TypeName="GimnasioDBPrograAvanzadaProyectoFinalModel.Rol">
+        <MappingFragment StoreEntitySet="Rol">
+          <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+          <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Rutina">
-      <EntityTypeMapping TypeName="GimnasioDBModel.Rutina">
+      <EntityTypeMapping TypeName="GimnasioDBPrograAvanzadaProyectoFinalModel.Rutina">
         <MappingFragment StoreEntitySet="Rutina">
-          <ScalarProperty Name="rutina_id" ColumnName="rutina_id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="duracion" ColumnName="duracion" />
+          <ScalarProperty Name="Rutina_id" ColumnName="Rutina_id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="GimnasioDBPrograAvanzadaProyectoFinalModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="GimnasioDBPrograAvanzadaProyectoFinalModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="Contrasenna" ColumnName="Contrasenna" />
+          <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+          <ScalarProperty Name="UsaClaveTemporal" ColumnName="UsaClaveTemporal" />
+          <ScalarProperty Name="IdMembresia" ColumnName="IdMembresia" />
+          <ScalarProperty Name="FechaCaducidad" ColumnName="FechaCaducidad" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

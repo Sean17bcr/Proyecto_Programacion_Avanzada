@@ -14,17 +14,13 @@ namespace Api_ProyectoWeb.Models
     
     public partial class Clase
     {
-        public Clase()
-        {
-            this.Inscripcion = new HashSet<Inscripcion>();
-        }
-    
         public int Clase_id { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string Horario { get; set; }
-        public Nullable<int> Capacidad { get; set; }
+        public int Capacidad { get; set; }
+        public Nullable<int> IdUsuario { get; set; }
     
-        public virtual ICollection<Inscripcion> Inscripcion { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

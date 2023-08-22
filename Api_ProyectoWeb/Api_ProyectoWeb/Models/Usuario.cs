@@ -16,7 +16,9 @@ namespace Api_ProyectoWeb.Models
     {
         public Usuario()
         {
-            this.Inscripcion = new HashSet<Inscripcion>();
+            this.Bitacora = new HashSet<Bitacora>();
+            this.Clase = new HashSet<Clase>();
+            this.Equipo = new HashSet<Equipo>();
             this.Pago = new HashSet<Pago>();
         }
     
@@ -27,9 +29,14 @@ namespace Api_ProyectoWeb.Models
         public string Nombre { get; set; }
         public string Telefono { get; set; }
         public byte IdRol { get; set; }
-        public System.DateTime FechaCaducidad { get; set; }
+        public bool UsaClaveTemporal { get; set; }
+        public Nullable<int> IdMembresia { get; set; }
+        public Nullable<System.DateTime> FechaCaducidad { get; set; }
     
-        public virtual ICollection<Inscripcion> Inscripcion { get; set; }
+        public virtual ICollection<Bitacora> Bitacora { get; set; }
+        public virtual ICollection<Clase> Clase { get; set; }
+        public virtual ICollection<Equipo> Equipo { get; set; }
+        public virtual Membresia Membresia { get; set; }
         public virtual ICollection<Pago> Pago { get; set; }
         public virtual Rol Rol { get; set; }
     }

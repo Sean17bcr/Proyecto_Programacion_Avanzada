@@ -15,7 +15,7 @@ namespace Api_ProyectoWeb.Controllers
         [Route("api/AgregarPago")]
         public int AgregarPago(PagoEnt entidad)
         {
-            using (var bd = new GimnasioDBEntities())
+            using (var bd = new GimnasioDBPrograAvanzadaProyectoFinalEntities1())
             {
                 return 0;
             }
@@ -25,7 +25,7 @@ namespace Api_ProyectoWeb.Controllers
         [Route("api/EliminarPago")]
         public PagoEnt EliminarPago(PagoEnt entidad)
         {
-            using (var bd = new GimnasioDBEntities())
+            using (var bd = new GimnasioDBPrograAvanzadaProyectoFinalEntities1())
             {
                 return entidad;
             }
@@ -36,7 +36,7 @@ namespace Api_ProyectoWeb.Controllers
         [Route("api/EditarPago")]
         public int EditarPago(PagoEnt entidad)
         {
-            using (var bd = new GimnasioDBEntities())
+            using (var bd = new GimnasioDBPrograAvanzadaProyectoFinalEntities1())
             {
                 return 0;
             }
@@ -46,7 +46,7 @@ namespace Api_ProyectoWeb.Controllers
         [Route("api/GenerarInformePagoInscripcion")]
         public List<PagoEnt> GenerarInformePagoInscripcion(PagoEnt entidad)
         {
-            using (var bd = new GimnasioDBEntities())
+            using (var bd = new GimnasioDBPrograAvanzadaProyectoFinalEntities1())
             {
                 return null;
             }

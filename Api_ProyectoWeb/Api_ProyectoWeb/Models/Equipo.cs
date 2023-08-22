@@ -15,8 +15,11 @@ namespace Api_ProyectoWeb.Models
     public partial class Equipo
     {
         public int Equipo_id { get; set; }
+        public Nullable<int> IdUsuario { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public Nullable<int> Capacidad { get; set; }
+        public int Cantidad { get; set; }
+    
+        public virtual Usuario Usuario { get; set; }
     }
 }

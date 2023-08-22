@@ -163,19 +163,23 @@
     <Compile Include="Controllers\ClaseController.cs" />
     <Compile Include="Controllers\EquipoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InscripcionController.cs" />
+    <Compile Include="Controllers\MembresiaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\RutinaController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Entities\ClaseEnt.cs" />
     <Compile Include="Entities\EquipoEnt.cs" />
-    <Compile Include="Entities\InscripcionEnt.cs" />
+    <Compile Include="Entities\MembresiaEnt.cs" />
+    <Compile Include="Entities\RolEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
     <Compile Include="Entities\PagoEnt.cs" />
     <Compile Include="Entities\RutinaEnt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Bitacora.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Clase.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -183,7 +187,8 @@
     <Compile Include="Models\Equipo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Inscripcion.cs">
+    <Compile Include="Models\generales.cs" />
+    <Compile Include="Models\Membresia.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -208,6 +213,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Rutina.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuario.cs">
